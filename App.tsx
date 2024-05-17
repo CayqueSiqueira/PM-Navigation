@@ -22,18 +22,18 @@ export default function App() {
     Poppins_700Bold
   })
 
-  if (!fontsLoaded) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Carregando</Text>
-      </View>
-    )
-  }
+  // if (!fontsLoaded) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.title}>Carregando</Text>
+  //     </View>
+  //   )
+  // }
 
   return (
     <ThemeProvider theme={theme}>
       <StatusBar
-        barStyle='light-content'
+
         backgroundColor="transparent"
         translucent
       />

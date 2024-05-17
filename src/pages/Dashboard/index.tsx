@@ -5,6 +5,10 @@ import { Input } from '../../components/Input'
 import { Container } from './styles'
 import { InputAmount } from '../../components/InputAmount'
 import { InputDate } from '../../components/InputDate'
+import { Alert } from 'react-native'
+import { spendingCreate } from '../../spending/spendingCreate'
+
+
 export function Dashboard() {
 
   const [name, setName] = useState('')
@@ -13,6 +17,30 @@ export function Dashboard() {
   const [category, setCategory] = useState('')
   const [local, setLocal] = useState('')
 
+  function handleAddNewSpending(){
+    if(name.trim() === '' || amount.trim() === '' || datePurchase.trim() === '' || category.trim() === '' || local.trim() === ''){
+      return Alert.alert('Atenção','Todos os campos devem ser preenchidos')
+   }
+   
+    const data = {
+      id: String(new Date().getTime()),
+      name,
+      amount,
+      datePurchase,
+      category,
+      local
+    }
+
+
+    // console.log(data)
+    setName('')
+    setAmount('')
+    setDatePurchase('')
+    setCategory('')
+    setLocal('')
+
+    spendingCreate(data)
+  }
   return (
     <Container
     >
@@ -36,7 +64,7 @@ export function Dashboard() {
         placeholder='Data Compra'
         placeholderTextColor='#363F5F'
         value={datePurchase}
-        onChangeText={value => setDatePurchase(datePurchase)}
+        onChangeText={value => setDatePurchase(value)}
       />
 
       <Input
@@ -55,6 +83,7 @@ export function Dashboard() {
 
       <Button
         title='Adicionar'
+        onPress={handleAddNewSpending}
       />
 
     </Container>
